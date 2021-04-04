@@ -98,7 +98,7 @@
 	}
 
 	function getPubName($conn, $pubid){
-		$query = "SELECT publisher_name FROM publisher WHERE publisherid = '$pubid'";
+		$query = "SELECT publisher_name FROM publisher WHERE publisher_name = '$pubid'";
 		$result = mysqli_query($conn, $query);
 		if(!$result){
 			echo "Can't retrieve data " . mysqli_error($conn);

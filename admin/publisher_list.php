@@ -29,14 +29,14 @@
 				exit;
 			}
 			while ($pubInBook = mysqli_fetch_assoc($result2)){
-				if($pubInBook['publisherid'] == $row['publisherid']){
+				if($pubInBook['publisherid'] == $row['publisher_name']){
 					$count++;
 				}
 			}
 	?>
 		<li>
 			<span class="badge"><?php echo $count; ?></span>
-		    <a href="bookPerPub.php?pubid=<?php echo $row['publisherid']; ?>"><?php echo $row['publisher_name']; ?></a>
+		    <a href="bookPerPub.php?pubid=<?php echo $row['publisher_name']; ?>"><?php echo $row['publisher_name']; ?></a>
 		</li>
 	<?php } ?>
 		<li>

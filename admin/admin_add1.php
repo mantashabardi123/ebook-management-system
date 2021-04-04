@@ -15,7 +15,11 @@
 
 		$author = trim($_POST['author']);
 		$author = mysqli_real_escape_string($conn, $author);
-		
+		$bkcategory = trim($_POST['bkcategory']);
+		$bkcategory = mysqli_real_escape_string($conn, $bkcategory);
+
+		$bktype = trim($_POST['bktype']);
+		$bktype = mysqli_real_escape_string($conn, $bktype);
 		$descr = trim($_POST['descr']);
 		$descr = mysqli_real_escape_string($conn, $descr);
 		
@@ -51,7 +55,6 @@
 				echo "Can't add new publisher " . mysqli_error($conn);
 				exit;
 			}
-			$publisherid = mysql_insert_id($conn);
 		} else {
 			$row = mysqli_fetch_assoc($findResult);
 			$publisherid = $row['publisherid'];
@@ -83,6 +86,26 @@
 				<td><input type="text" name="author" required></td>
 			</tr>
 			<tr>
+				<th>Book Category</th>
+				<td>
+				<select name="bkcategory">
+				
+				<option value='sci'>sci</option>
+				<option value='story'>story</option>
+				<option value='history'>history</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Book Type</th>
+				<td>
+				<select name="bktype">
+				<option value='free'>free</option>
+				<option value='paid'>paid</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
 				<th>Image</th>
 				<td><input type="file" name="image"></td>
 			</tr>
@@ -100,6 +123,7 @@
 			</tr>
 		</table>
 		<input type="submit" name="add" value="Add new book" class="btn btn-primary">
+		<br>
 		<input type="reset" value="cancel" class="btn btn-default">
 	</form>
 <?php

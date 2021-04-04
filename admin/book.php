@@ -25,7 +25,7 @@
       <p class="lead" style="margin: 25px 0"><a href="books.php">Books</a> > <?php echo $row['book_title']; ?></p>
       <div class="row">
         <div class="col-md-3 text-center">
-          <img class="img-responsive img-thumbnail" src="./bootstrap/img/<?php echo $row['book_image']; ?>">
+          <img class="img-responsive img-thumbnail" src="./upload/image/<?php echo $row['book_image']; ?>">
         </div>
         <div class="col-md-6">
           <h4>Book Description</h4>

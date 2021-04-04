@@ -21,7 +21,7 @@
         <?php while($query_row = mysqli_fetch_assoc($result)){ ?>
           <div class="col-md-3">
             <a href="book.php?bookisbn=<?php echo $query_row['book_isbn']; ?>">
-              <img class="img-responsive img-thumbnail" src="./bootstrap/img/<?php echo $query_row['book_image']; ?>">
+              <img class="img-responsive img-thumbnail" src="./upload/image/<?php echo $query_row['book_image']; ?>">
             </a>
           </div>
         <?php
