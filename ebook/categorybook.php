@@ -59,13 +59,13 @@
                                         <div class="d-md-flex align-items-start justify-content-start">
                                             <div>
                                                 <div class="dropdown-header">Genre</div>
-                                                <a class="dropdown-item" href="#">Action and Adventure</a>
+                                                <a class="dropdown-item" href="categorybook.php?category=Action and Adventure">Action and Adventure</a>
                                                 <a class="dropdown-item" href="#">Classics</a>
                                                 <a class="dropdown-item" href="#">Comic Book or Graphic Novel</a>
                                                 <a class="dropdown-item" href="#">Detective and Mystery</a>
                                                 <a class="dropdown-item" href="#">Fantasy</a>
                                                 <a class="dropdown-item" href="#"> Fiction</a>
-                                                <a class="dropdown-item" href="#">Horror</a>
+                                                <a class="dropdown-item" href="categorybook.php?category=Horror">Horror</a>
                                                 <a class="dropdown-item" href="#">Romance</a>
                                                 <a class="dropdown-item" href="#">Science Fiction (Sci-Fi)</a>
                                                 <a class="dropdown-item" href="#">Suspense and Thrillers</a>
