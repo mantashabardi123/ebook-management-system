@@ -17,14 +17,14 @@
 <body>
 
     <body>
-        <?php if (isset($_SESSION['message'])) : ?>
+        <?php if (isset($_SESSION['message'])): ?>
             <div class="msg">
                 <?php
-                echo $_SESSION['message'];
-                unset($_SESSION['message']);
-                ?>
+echo $_SESSION['message'];
+unset($_SESSION['message']);
+?>
             </div>
-        <?php endif ?>
+        <?php endif?>
 
             <body>
                     <div class="container-fluid p-0">
@@ -118,27 +118,27 @@
                     </div>
                     </nav>
                     </div>
-              
-<?php
-  $book_isbn = $_GET['bookisbn'];
-  // connecto database
-  require_once "../admin/functions/database_functions.php";
-  $conn = db_connect();
 
-  $query = "SELECT * FROM books WHERE book_isbn = '$book_isbn'";
-  $result = mysqli_query($conn, $query);
-  if(!$result){
+<?php
+$book_isbn = $_GET['bookisbn'];
+// connecto database
+require_once "../admin/functions/database_functions.php";
+$conn = db_connect();
+
+$query = "SELECT * FROM books WHERE book_isbn = '$book_isbn'";
+$result = mysqli_query($conn, $query);
+if (!$result) {
     echo "Can't retrieve data " . mysqli_error($conn);
     exit;
-  }
+}
 
-  $row = mysqli_fetch_assoc($result);
-  if(!$row){
+$row = mysqli_fetch_assoc($result);
+if (!$row) {
     echo "Empty book";
     exit;
-  }
+}
 
-  $title = $row['book_title'];
+$title = $row['book_title'];
 ?>
       <!-- Example row of columns -->
       <p class="lead" style="margin: 25px 25px"><a href="books.php">Books</a> > <?php echo $row['book_title']; ?></p>
@@ -151,40 +151,52 @@
           <p><?php echo $row['book_descr']; ?></p>
           <h4>Book Details</h4>
           <table class="table">
-          	<?php foreach($row as $key => $value){
-              if($key == "book_descr" || $key == "book_image" ||$key == "book_file" || $key == "publisherid" || $key == "book_title"){
-                continue;
-              }
-              switch($key){
-                case "book_isbn":
-                  $key = "ISBN";
-                  break;
-                case "book_title":
-                  $key = "Title";
-                  break;
-                case "book_author":
-                  $key = "Author";
-                  break;
-                case "book_price":
-                  $key = "Price";
-                  break;
-              }
-            ?>
+          	<?php foreach ($row as $key => $value) {
+    if ($key == "book_descr" || $key == "book_image" || $key == "book_file" || $key == "publisherid" || $key == "book_title") {
+        continue;
+    }
+    switch ($key) {
+        case "book_isbn":
+            $key = "ISBN";
+            break;
+        case "book_title":
+            $key = "Title";
+            break;
+        case "book_author":
+            $key = "Author";
+            break;
+        case "book_price":
+            $key = "Price";
+            break;
+    }
+    ?>
             <tr>
               <td><?php echo $key; ?></td>
               <td><?php echo $value; ?></td>
             </tr>
-            <?php 
-              } 
-              if(isset($conn)) {mysqli_close($conn); }
-            ?>
+            <?php
+}
+if (isset($conn)) {mysqli_close($conn);}
+?>
           </table>
           <form method="post" action="../admin/cart.php">
-            <input type="hidden" name="bookisbn" value="<?php echo $book_isbn;?>">
+            <input type="hidden" name="bookisbn" value="<?php echo $book_isbn; ?>">
             <input type="submit" value="Purchase / Add to cart" name="cart" class="btn btn-primary">
+
+            
           </form>
-       	</div>
+          <br>
+          <?php
+          if($row['book_type']=='free'){
+          ?>
+          <a href="../admin/upload/pdf/<?php echo $row['book_pdf']; ?>" target="_blank" class='btn btn-primary'>Read Book</a>
+        <?php
+        }
+        ?>
+          </div>
+
       </div>
+      
       <footer class="footer">
 	<div class="container1">
 		<div class="row">
@@ -216,5 +228,5 @@
 			</div>
 		</div>
 	</div>
-		
-</footer>	
+
+</footer>
