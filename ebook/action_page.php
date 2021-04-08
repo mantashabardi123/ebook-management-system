@@ -109,79 +109,39 @@
 				 </div>
 				</nav>
 			</div>		    
-			<div id="demo" class="carousel slide" data-ride="carousel">
+<main style="margin-bottom:10px;">
+<?php
+require_once "../admin/functions/database_functions.php";
+$conn = db_connect();
+if(!empty($_POST["search"])) {
+$bookname=$_POST['search'];
+$query ="SELECT * FROM books WHERE book_title ='$bookname'";
+$result = mysqli_query($conn, $query);
+if ($result) {
 
-  <!-- Indicators -->
-		  <ul class="carousel-indicators">
-		    <li data-target="#demo" data-slide-to="0" class="active"></li>
-		    <li data-target="#demo" data-slide-to="1"></li>
-		    <li data-target="#demo" data-slide-to="2"></li>
-		  </ul>
-		  
-		  <!-- The slideshow -->
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="img/book7.jpg" alt="book" width="1000" height="600">
-			      <div class="carousel-caption">
-			      <h3 style="color: ghostwhite;">"There are many little ways to enlarge your world.<br><br><strong>Love of books is the best of all"</strong></h3>
-			      <a href="#" class="btn btn-primary">lets go</a>
-			  </div>
-		    </div>
-		    <div class="carousel-item">
-		      <img src="img/book10.jpg" alt="book" width="1000" height="600">
-		      <div class="carousel-caption">
-			      <h3 style="color: white;" >"If there's a story that you want to read, but it hasn't been written yet than<br><strong>You must WRITE IT"</strong></h3>
-
-			      <a href="create.php" class="btn btn-primary">Start Writing</a>
-		    </div>
-		    </div>
-		    <div class="carousel-item">
-		      <img src="img/book3.jpg" alt="book" width="1000" height="600">
-			      <div class="carousel-caption">
-				      <h3></h3>
-				      <p></p>
-				      <a href="#" class="btn btn-primary">More Bootstrap Snippets</a>
-			      </div>
-		    </div>
-		  </div>
-		  
-		  <!-- Left and right controls -->
-		  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-		    <span class="carousel-control-prev-icon"></span>
-		  </a>
-		  <a class="carousel-control-next" href="#demo" data-slide="next">
-		    <span class="carousel-control-next-icon"></span>
-		  </a>
+?>
+<ul id="books-list"><?php
+foreach($result as $books) {
+    ?>
+<div class="row"  style="margin: 25px 5px">
+		<div class="col-md-3">
+			<img class="img-responsive img-thumbnail" src="../admin/upload/image/<?php echo $books['book_image'];?>">
 		</div>
-	</header>
-	<main>
-		<h3><center><u><b> ABOUT US </b></u></center></h3>
-		<p>BOOKITIQUE is a free service that helps millions of readers discover books they'll love while providing publishers and authors with a way to drive sales and find new fans.<br>The website provides the user,author and administrator an easy and efficient way to buy and manage books online.<br>The website provides facilities like purchasing books,to view books,and to create short stories.<br>The website provides a contact us page where users to provide feedback and give some suggestions.
-		</p>
-		<center>
-		<div class="container1">
-  		<h2>Circle</h2>
-  		<p>The .rounded-circle class shapes the image to a circle:</p>            
-  		<img src="img/login3.jpeg" class="rounded-circle" alt="Cinque Terre" width="304" height="236"> 
+		<div class="col-md-7">
+			<h4><?php echo $books['book_title'];?></h4>
+			<a href="book.php?bookisbn=<?php echo $books['book_isbn'];?>" class="btn btn-primary">POST Details</a>
 		</div>
-		<div class="container3">
-  		<h2>Circle</h2>
-  		<p>The .rounded-circle class shapes the image to a circle:</p>            
-  		<img src="img/login3.jpeg" class="rounded-circle" alt="Cinque Terre" width="304" height="236"> 
-		</div>
-		<div class="container3">
-  		<h2>Circle</h2>
-  		<p>The .rounded-circle class shapes the image to a circle:</p>            
-  		<img src="img/login3.jpeg" class="rounded-circle" alt="Cinque Terre" width="304" height="236"> 
-		</div>
-		</center> 
- 
-	</main>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</div>
+	<br>
+    <?php } ?>
+</ul>
+<?php }}?>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-<footer class="footer">
+<footer class="footer" style="bottom:0;position:fixed;width:100%;height:290px;">
 	<div class="container1">
 		<div class="row">
 			<div class="footer-col">
